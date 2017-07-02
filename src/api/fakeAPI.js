@@ -1,10 +1,10 @@
 
 class FakeAPIClass {
 
-    getNumber(){
+    getNumber(offset){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(Math.random())
+                resolve(Math.random() + offset)
             }, 1000);
         })
     }

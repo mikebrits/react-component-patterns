@@ -1,18 +1,52 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import MyButton from './MyButtonComponent';
 import DataLayer from './MyButtonDataLayer';
 
-class App extends Component {
-    methods = {
-        handleOnClick : ()  => {
-            this.props.refetchData('myNumber');
+class MyButtonController extends Component {
+
+    constructor() {
+        super();
+        this.offset = 0
+    }
+
+
+    handleOnClick = () => {
+        if (!this.props.UPDATING){
+            this.offset++;
+            this.props.refetchData(this.offset);
         }
-    };
+    }
+
     render() {
-        if(this.props.data.myNumber.loading)
-            return <div>Loading...</div>;
-        return <MyButton state={this.state} {...this.methods} {...this.props}/>
+
+        console.log(this.props);
+
+        return (
+            <MyButton
+                state={this.state}
+                prepend={this.offset}
+                disabled={this.props.UPDATING}
+                isUpdating={this.props.UPDATING}
+                handleOnClick={() => this.handleOnClick()}
+                {...this.props}
+            />
+        )
+
+
     }
 }
 
-export default DataLayer(App);
+const Loading = (
+    <div>**Loading**</div>
+);
+
+export default DataLayer(
+
+        MyButtonController,
+        {
+            components : {
+                LOADING: Loading
+            }
+        }
+
+);

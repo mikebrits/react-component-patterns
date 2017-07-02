@@ -1,22 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default ({state, label, primary, handleOnClick, data}) => {
+export default ({state, label, primary, handleOnClick, data, prepend, disabled, isUpdating}) => {
 
-    const Button = styled.span`
+    const RandomNumberButton = styled.span`
         padding : 20px;
         border : 2px solid ${primary ? 'palevioletred' : 'pink'};
         color : grey;
-        cursor : pointer;
         border-radius : 5px;
+        background-color : white;
+        cursor : ${isUpdating ? 'progress' : 'pointer'};
+        opacity : ${isUpdating ? 0.6 : 1};
         &:hover {
             background-color : ${primary ? 'palevioletred' : 'pink'};
             color : white
         }
     `;
     return (
-        <Button onClick={handleOnClick}>
-            {data.myNumber.value}
-        </Button>
+        <RandomNumberButton onClick={handleOnClick}>
+            {data.value}
+        </RandomNumberButton>
     )
 }

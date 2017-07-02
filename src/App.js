@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MyButton from './components/MyButton'
+import styled from 'styled-components';
 class App extends Component {
+
+
   render() {
+
+      const AppWrapper = styled.div`
+        background-color : papayawhip;
+        height : 100vh;
+        display : flex;
+        align-items : center;
+        justify-content : center;
+    `;
+
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
+      <AppWrapper>
         <MyButton primary/>
-      </div>
+      </AppWrapper>
     );
   }
 }
